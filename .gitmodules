@@ -1,0 +1,3 @@
+[submodule "bme590hrm"]
+	path = ./../bme590hrm
+	url = git://github.com/qidizhai/bme590hrm.git
