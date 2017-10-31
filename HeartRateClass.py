@@ -25,17 +25,15 @@ class ECG:
 
     def getAverage(self, req):
         # try except for the cases when st and et are out of bounds
-        self.starttime = self.time[0]
-        endidx = req['averaging_period']-1
-        self.endtime = self.time[endidx]
-        from getAverage import getAverage
-        st = self.starttime
-        et = self.endtime
-        for eachtime in self.time:
-            if eachtime == None: # perhaps this should be a type of error, like a ValueError
-                eachtime = 0
-                # average = value for each interval
+        avglength = req['averaging_period']
+        from getAverage import getAverage    
+        for idx, val in enumerate(self.time):
+            # if val == None
+            if idx==0 or idx%avglength==0 and (idx+avglength-1)<len(self.time):
+                st = self.time[idx]
+                et = self.time[idx+avglength-1]
             self.averageHR.append(getAverage(self.mV, self.time, st, et, self.threshold))
+
 
     def getcheckbradyandtachy(self, group):
         from checkbradyandtachycardia import checkbradyandtachycardia

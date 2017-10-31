@@ -15,8 +15,6 @@ def summary():
 	req = request.get_json()
 	ECG1 = ECG(req)
 	ECG1.getInHR()
-	print(ECG1.instHR)
-	print(ECG1.mV)
 	ECG1.getcheckbradyandtachy(ECG1.instHR)
 	data = {"time": ECG1.time, "voltage": ECG1.mV, "instantaneous_heart_rate": ECG1.instHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
 	return jsonify(data)
@@ -28,8 +26,7 @@ def average():
 	req = request.get_json()
 	ECG1 = ECG(req)
 	ECG1.getAverage(req)
-	print(ECG1.averageHR)
-	ECG.getcheckbradyandtachy(ECG1.averageHR)
+	ECG1.getcheckbradyandtachy(ECG1.averageHR)
 	data = {"averaging_period": ECG1.endtime, "time_interval": ECG1.time[:ECG1.endtime], "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
 	return jsonify(data)
 
