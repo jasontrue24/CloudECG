@@ -27,7 +27,7 @@ def average():
 	ECG1 = ECG(req)
 	ECG1.getAverage(req)
 	ECG1.getcheckbradyandtachy(ECG1.averageHR)
-	data = {"averaging_period": ECG1.endtime, "time_interval": ECG1.time[:ECG1.endtime], "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	data = {"averaging_period": req['averaging_period'], "time_interval": ECG1.time, "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
 	return jsonify(data)
 
 @app.route("/api/requests")

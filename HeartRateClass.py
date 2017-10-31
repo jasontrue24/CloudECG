@@ -10,8 +10,8 @@ class ECG:
         self.checktachy = []
         self.time = req['time']
         self.mV = req['voltage']
-        self.starttime = 0
-        self.endtime = 0
+        #self.starttime = 0
+        #self.endtime = 0
         self.instHR = []
         self.averageHR = []
 
