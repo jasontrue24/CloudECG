@@ -19,12 +19,8 @@ class ECG:
         from instHR import instHR
         from instHR import getPeaks
         for eachtime in self.time:
-            try:
-                0/eachtime
-            except:
-                print("time data is missing")
-                eachtime=0
-                #if eachtime == None:  perhaps this should be a type of error, like a ValueError
+            if eachtime == None: # perhaps this should be a type of error, like a ValueError
+                eachtime = 0
             self.instHR.append(instHR(getPeaks(self.mV, self.time, self.threshold), eachtime))
 
     def getAverage(self, req):
