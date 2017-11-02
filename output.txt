@@ -1,3 +1,0 @@
-Estimated instantaneous heart rate: 8.571428571428571
-Estimated average heart rate: 7.659574468085106
-There is bradycardia detected
