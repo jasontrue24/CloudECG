@@ -1,14 +1,9 @@
 # bme590hrm
 
-The file to be run is named 'main.py'. It takes in 2 arguments to be run with pytest on console: the first argument is the filename of the input csv file, and the second argument is the filename of the output text file.
-For example, your command line would look something like $ python main.py ecg-data.csv output.txt
+The web service will be running on http://vcm-1006.vm.duke.edu.
 
-When the file is ran, it will ask the user to input information for 6 items:
-- threshold
-- tachycardia threshold
-- bradycardia threshold
-- starttime (for calculating the average)
-- endtime (for calculating the average)
-- instant timepoint (for calculating the instantaneous heart rate)
+Use http://vcm-1006.vm.duke.edu:5000/api/heart_rate/summary for POSTing json input of time and voltage arrays to receive instantaneous heart rate measurements. Bradycardia and tachycardia are also checked.
 
-Because there are default values assigned to each of the 6 items, even if the user fails to input a value all of the values - instantaneous heart rate, average heart rate, and the detection of brady/tachy-cardia - will be outputted to the output file.
+Use http://vcm-1006.vm.duke.edu:5000/api/heart_rate/average for POSTing json input of time, voltage, and an averaging period to calculate averaged heart rate measurements. Bradycardia and tachycardia are also checked.
+
+Use http://vcm-1006.vm.duke.edu:5000/api/requests to GET the number of requests this service has served.

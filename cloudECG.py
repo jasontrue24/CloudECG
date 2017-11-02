@@ -16,7 +16,11 @@ def summary():
 	ECG1 = ECG(req)
 	ECG1.getInHR()
 	ECG1.getcheckbradyandtachy(ECG1.instHR)
-	data = {"time": ECG1.time, "voltage": ECG1.mV, "instantaneous_heart_rate": ECG1.instHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	data = {"time": ECG1.time,
+                "voltage": ECG1.mV,
+                "instantaneous_heart_rate": ECG1.instHR,
+                "tachycardia_annotations": ECG1.checktachy,
+                "bradycardia_annotations": ECG1.checkbrady}
 	return jsonify(data)
 
 @app.route("/api/heart_rate/average", methods=['POST'])
@@ -27,7 +31,11 @@ def average():
 	ECG1 = ECG(req)
 	ECG1.getAverage(req)
 	ECG1.getcheckbradyandtachy(ECG1.averageHR)
-	data = {"averaging_period": req['averaging_period'], "time_interval": ECG1.time, "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	data = {"averaging_period": req['averaging_period'],
+                "time_interval": ECG1.time,
+                "average_heart_rate": ECG1.averageHR,
+                "tachycardia_annotations": ECG1.checktachy,
+                "bradycardia_annotations": ECG1.checkbrady}
 	return jsonify(data)
 
 @app.route("/api/requests")
@@ -36,7 +44,6 @@ def requests():
 	count += 1
 	data = {"number of requests": count}
 	return jsonify(data)
-
 
 	# try:
 	# 	pass
