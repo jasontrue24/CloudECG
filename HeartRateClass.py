@@ -23,7 +23,6 @@ class ECG:
         for eachtime in self.time:
             if eachtime == None: # perhaps this should be a type of error, like a ValueError
                 eachtime = 0
-            print eachtime
             self.instHR.append(instHR(peaks, eachtime))
 
     def getAverage(self, req):
