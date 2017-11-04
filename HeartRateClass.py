@@ -46,7 +46,6 @@ class ECG:
                 if self.time[j] >= mintime and self.time[j] <= maxtime:
                     instants_counter += 1
                     instants_sum += inst_HR_values[j]
-            print instants_counter, instants_sum
             self.averageHR.append(instants_sum/instants_counter)
 
     def getcheckbradyandtachy(self, group):
