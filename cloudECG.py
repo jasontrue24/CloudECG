@@ -13,6 +13,12 @@ count = 0
 
 
 def summary():
+	"""
+	Using Json input "time" and "voltage"
+
+	:return: the time list, the voltage list, instantaneous heart rate
+	and the tachycardia and bradycardia result
+	"""
 	global count 
 	count += 1
 	try:
@@ -31,6 +37,12 @@ def summary():
 
 @app.route("/api/heart_rate/average", methods=['POST'])
 def average():
+	"""
+    Using Json input "Time" and "voltage"
+
+	:return: the averaging_period, time_interval, average heart rate
+	tachycardia and bradycardia annotation
+	"""
 	global count 
 	count += 1
 	try:
@@ -48,6 +60,10 @@ def average():
 
 @app.route("/api/requests")
 def requests():
+	"""
+
+	:return: the total number of the requests the web service has served
+	"""
 	global count 
 	count += 1
 	data = {"number of requests": count}
