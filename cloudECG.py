@@ -13,6 +13,7 @@ def internal_errorchecking():
         @app.route("/api/heart_rate/summary", methods=['POST'])
     except:
         return jsonify("There is an internal error"), 500
+
     
 @app.route("/api/heart_rate/summary", methods=['POST'])
 def summary():
