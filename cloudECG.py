@@ -8,27 +8,43 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 count = 0
 
+
 @app.route("/api/heart_rate/summary", methods=['POST'])
+
+
 def summary():
 	global count 
 	count += 1
-	req = request.get_json()
-	ECG1 = ECG(req)
-	ECG1.getInHR()
-	ECG1.getcheckbradyandtachy(ECG1.instHR)
-	data = {"time": ECG1.time, "voltage": ECG1.mV, "instantaneous_heart_rate": ECG1.instHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
-	return jsonify(data)
+	try:
+	    req = request.get_json()
+	    ECG1 = ECG(req)
+	    for eachvoltage in ECG1.mV:
+		    if eachvoltage > 150 or eachvoltage < -100:
+			    return jsonify("The voltage is out of bound"), 400
+	    ECG1.getInHR()
+	    ECG1.getcheckbradyandtachy(ECG1.instHR)
+	    data = {"time": ECG1.time, "voltage": ECG1.mV, "instantaneous_heart_rate": ECG1.instHR,
+				"tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	    return jsonify(data)
+	except:
+	    return jsonify("The input time is not in a correct format"), 400
 
 @app.route("/api/heart_rate/average", methods=['POST'])
 def average():
 	global count 
 	count += 1
-	req = request.get_json()
-	ECG1 = ECG(req)
-	ECG1.getAverage(req)
-	ECG1.getcheckbradyandtachy(ECG1.averageHR)
-	data = {"averaging_period": req['averaging_period'], "time_interval": ECG1.time, "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
-	return jsonify(data)
+	try:
+	    req = request.get_json()
+	    ECG1 = ECG(req)
+	    for eachvoltage in ECG1.mV:
+		    if eachvoltage > 150 or eachvoltage < -100:
+			    return jsonify("The voltage is out of bound"), 400
+	    ECG1.getAverage(req)
+	    ECG1.getcheckbradyandtachy(ECG1.averageHR)
+	    data = {"averaging_period": req['averaging_period'], "time_interval": ECG1.time, "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	    return jsonify(data)
+	except:
+		return jsonify("The input time is not in a correct format"), 400
 
 @app.route("/api/requests")
 def requests():
