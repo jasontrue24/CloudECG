@@ -13,7 +13,6 @@ count = 0
 def summary():
     """
     Using Json input "time" and "voltage"
-
     :return: the time list, the voltage list, instantaneous heart rate
     and the tachycardia and bradycardia result
     """
@@ -40,7 +39,6 @@ def summary():
 def average():
     """
     Using Json input "Time" and "voltage"
-
     :return: the averaging_period, time_interval, average heart rate
     tachycardia and bradycardia annotation
     """
@@ -66,28 +64,10 @@ def average():
 
 @app.route("/api/requests")
 def requests():
-	"""
-
+    """
     :return: the total number of the requests the web service has served
     """
     global count
     count += 1
     data = {"number of requests": count}
     return jsonify(data)
-
-
-    # try:
-    # 	pass
-    # except Exception as e:
-    # 	raise
-    # else:
-    # 	pass
-    # finally:
-    # 	pass
-
-    # 	except ValueError
-        # flask-specific error handling: decorator
-        # different 'levels' of errors
-        # virtual machine is running the server
-        # how to display http error: logging, sending the error back to the client
-        # it's good to have try except for specific errors instead of general errors
