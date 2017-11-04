@@ -8,7 +8,12 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 count = 0
 
-
+def internal errorchecking()
+    try:
+        @app.route("/api/heart_rate/summary", methods=['POST'])
+    except:
+        return jsonify("There is an internal error"), 500
+    
 @app.route("/api/heart_rate/summary", methods=['POST'])
 def summary():
     """
@@ -26,14 +31,11 @@ def summary():
                 return jsonify("The voltage is out of bound"), 400
         ECG1.getInHR()
         ECG1.getcheckbradyandtachy(ECG1.instHR)
-        try:
-            data = {"time": ECG1.time, "voltage": ECG1.mV,
+        data = {"time": ECG1.time, "voltage": ECG1.mV,
                 "instantaneous_heart_rate": ECG1.instHR,
                 "tachycardia_annotations": ECG1.checktachy,
                 "bradycardia_annotations": ECG1.checkbrady}
-            return jsonify(data), 200
-        except:
-            return jsonify("There is an internal error"), 500
+        return jsonify(data), 200
     except:
         return jsonify("The input time is not in a correct format"), 400
 
