@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 count = 0
 
-def internal errorchecking()
+def internal errorchecking():
     try:
         @app.route("/api/heart_rate/summary", methods=['POST'])
     except:
