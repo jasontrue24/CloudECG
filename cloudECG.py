@@ -8,15 +8,14 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 count = 0
 
-
-@app.route("/api/heart_rate/summary", methods=['POST'])
-def summary():
-    """
-    Using Json input "time" and "voltage"
-    :return: the time list, the voltage list, instantaneous heart rate
-    and the tachycardia and bradycardia result
-    """
-    try:
+try:
+    @app.route("/api/heart_rate/summary", methods=['POST'])
+    def summary():
+        """
+        Using Json input "time" and "voltage"
+        :return: the time list, the voltage list, instantaneous heart rate
+        and the tachycardia and bradycardia result
+        """
         global count
         count += 1
         try:
@@ -34,8 +33,8 @@ def summary():
             return jsonify(data), 200
         except:
             return jsonify("The input time is not in a correct format"), 400
-    except:
-        return jsonify("There is an internal error"), 500
+  except:
+       return jsonify("There is an internal error"), 500
 
 @app.route("/api/heart_rate/average", methods=['POST'])
 def average():
