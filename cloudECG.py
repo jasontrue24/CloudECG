@@ -33,8 +33,8 @@ try:
             return jsonify(data), 200
         except:
             return jsonify("The input time is not in a correct format"), 400
-  except:
-       return jsonify("There is an internal error"), 500
+except:
+    return jsonify("There is an internal error"), 500
 
 @app.route("/api/heart_rate/average", methods=['POST'])
 def average():
