@@ -29,8 +29,11 @@ def summary():
 			    return jsonify("The voltage is out of bound"), 400
 	    ECG1.getInHR()
 	    ECG1.getcheckbradyandtachy(ECG1.instHR)
-	    data = {"time": ECG1.time, "voltage": ECG1.mV, "instantaneous_heart_rate": ECG1.instHR,
-				"tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	    data = {"time": ECG1.time,
+                    "voltage": ECG1.mV,
+                    "instantaneous_heart_rate": ECG1.instHR,
+		    "tachycardia_annotations": ECG1.checktachy,
+                    "bradycardia_annotations": ECG1.checkbrady}
 	    return jsonify(data)
 	except:
 	    return jsonify("The input time is not in a correct format"), 400
@@ -38,7 +41,7 @@ def summary():
 @app.route("/api/heart_rate/average", methods=['POST'])
 def average():
 	"""
-    Using Json input "Time" and "voltage"
+        Using Json input "Time" and "voltage"
 
 	:return: the averaging_period, time_interval, average heart rate
 	tachycardia and bradycardia annotation
@@ -53,7 +56,11 @@ def average():
 			    return jsonify("The voltage is out of bound"), 400
 	    ECG1.getAverage(req)
 	    ECG1.getcheckbradyandtachy(ECG1.averageHR)
-	    data = {"averaging_period": req['averaging_period'], "time_interval": ECG1.time, "average_heart_rate": ECG1.averageHR, "tachycardia_annotations": ECG1.checktachy, "bradycardia_annotations": ECG1.checkbrady}
+	    data = {"averaging_period": req['averaging_period'],
+                    "time_interval": ECG1.time,
+                    "average_heart_rate": ECG1.averageHR,
+                    "tachycardia_annotations": ECG1.checktachy,
+                    "bradycardia_annotations": ECG1.checkbrady}
 	    return jsonify(data)
 	except:
 		return jsonify("The input time is not in a correct format"), 400
@@ -61,7 +68,8 @@ def average():
 @app.route("/api/requests")
 def requests():
 	"""
-
+        Returns number of requests by the web service
+        
 	:return: the total number of the requests the web service has served
 	"""
 	global count 
@@ -84,5 +92,4 @@ def requests():
 		# different 'levels' of errors
 		# virtual machine is running the server 
 		# how to display http error: logging, sending the error back to the client
-		# it's good to have try except for specific errors instead of general errors
-
+		# it's good to have try except for specific errors instead of general error
